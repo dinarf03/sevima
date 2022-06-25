@@ -148,7 +148,7 @@ foreach ($ujian as $uj) {?>
             <li class="nav-item d-none d-lg-block">
             <a class="nav-link" href="?page=profil">
               <b>My Profile</b>
-               <img class="img-xs rounded-circle" src="../vendor/images/img_Guru/<?=$data['foto'];?>" alt="">
+               <img class="img-xs rounded-circle" src="../vendor/images/img_Guru/logo1.jpg" alt="">
             </a>
           </li>
         </ul>
@@ -164,7 +164,7 @@ foreach ($ujian as $uj) {?>
         <ul class="nav">
           <li class="nav-item nav-profile">
             <div class="nav-link">
-              <div class="profile-image"> <img src="../vendor/images/img_Guru/<?=$data['foto'];?>" alt="image" style="border:3px solid black;"/> <span class="online-status online"></span> </div>
+              <div class="profile-image"> <img src="../vendor/images/img_Guru/logo1.jpg" alt="image" style="border:3px solid black;"/> <span class="online-status online"></span> </div>
               <div class="profile-name">
                 <p class="name"><?=$data['nama_guru'];?></p>
                 <p class="designation">Guru</p>

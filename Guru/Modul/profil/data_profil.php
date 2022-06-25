@@ -8,7 +8,7 @@
                       <h4 class="card-title text-center">My Profile</h4>
                       <p class="card-description text-center">
 
-                          <img src="../vendor/images/img_Guru/<?=$data['foto'];?>" style="border:3px solid black;width: 100px;height: 100px;border-radius: 7px;"/>
+                          <img src="../vendor/images/img_Guru/logo1.jpg" style="border:3px solid black;width: 100px;height: 100px;border-radius: 7px;"/>
 
                       </p>
 

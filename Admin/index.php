@@ -2,26 +2,26 @@
 session_start();
 include '../config/db.php';
 
-if(@$_SESSION['Admin']) {
-?>
+if (@$_SESSION['Admin']) {
+    ?>
 <?php
 if (@$_SESSION['Admin']) {
-  $sesi = @$_SESSION['Admin'];
-}
-$sql  = mysqli_query($con,"SELECT * FROM tb_admin WHERE id_admin = '$sesi'") or die(mysqli_error($con));
-$data = mysqli_fetch_array($sql);
+        $sesi = @$_SESSION['Admin'];
+    }
+    $sql = mysqli_query($con, "SELECT * FROM tb_admin WHERE id_admin = '$sesi'") or die(mysqli_error($con));
+    $data = mysqli_fetch_array($sql);
 
 // data sekolah.apl
-$sekolah = mysqli_query($con,"SELECT * FROM tb_sekolah WHERE id_sekolah=1 ");
-$apl = mysqli_fetch_array($sekolah);
-?>
+    $sekolah = mysqli_query($con, "SELECT * FROM tb_sekolah WHERE id_sekolah=1 ");
+    $apl = mysqli_fetch_array($sekolah);
+    ?>
 
 <!DOCTYPE html>
 <html lang="en" dir="ltr">
   <head>
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
-    <title>E-learning | <?=$data['nama_lengkap']; ?></title>
+    <title>E-learning | <?=$data['nama_lengkap'];?></title>
     <link rel="stylesheet" href="../vendor/node_modules/mdi/css/materialdesignicons.min.css">
     <link rel="stylesheet" href="../vendor/node_modules/simple-line-icons/css/simple-line-icons.css">
     <link rel="stylesheet" href="../vendor/node_modules/font-awesome/css/font-awesome.min.css" />
@@ -36,7 +36,7 @@ $apl = mysqli_fetch_array($sekolah);
       <nav class="navbar col-lg-12 col-12 p-0 fixed-top d-flex flex-row">
         <div class="text-center navbar-brand-wrapper d-flex align-items-top justify-content-center" style="background-color: #1991eb;">
           <a class="navbar-brand brand-logo" href="index.php" style="font-family:Aegyptus;font-weight: bold;font-size: 30px;">
-            <img src="../vendor/images/<?=$apl['logo'];?>" alt="logo" style="height: 45px;width: 45px;border-radius: 10px;">
+            <img src="../vendor/images/logo2.png" alt="logo" style="height: 45px;width: 45px;border-radius: 10px;">
             <!-- <i class="fa fa-graduation-cap"></i> --> <b><?=$apl['textlogo'];?></b>
           </a>
           <a class="navbar-brand brand-logo-mini" href="index.php">
@@ -54,42 +54,42 @@ $apl = mysqli_fetch_array($sekolah);
           </ul>
           <ul class="navbar-nav navbar-nav-right" style="border-top-left-radius:50px;color: black;border-bottom-left-radius:50px;color: #fff;border:1px dashed #00BCD4; ">
             <?php // tampilkan notifikasi ujian
-            $ujian = mysqli_query($con,"SELECT * FROM ujian
+    $ujian = mysqli_query($con, "SELECT * FROM ujian
             INNER JOIN tb_master_mapel ON ujian.id_mapel=tb_master_mapel.id_mapel
             INNER JOIN tb_jenisujian ON ujian.id_jenis=tb_jenisujian.id_jenis
             INNER JOIN kelas_ujian ON ujian.id_ujian=kelas_ujian.id_ujian
             WHERE ujian.id_guru='$data[id_guru]' AND kelas_ujian.aktif='Y' GROUP BY kelas_ujian.id_ujian    ");
-            $jm= mysqli_num_rows($ujian);
-            ?>
+    $jm = mysqli_num_rows($ujian);
+    ?>
             <li class="nav-item dropdown">
               <a class="nav-link count-indicator dropdown-toggle" id="notificationDropdown" href="#" data-toggle="dropdown">
                 <i class="mdi mdi-bell-ring"></i>
-                <span class="count"><?=$jm; ?></span>
+                <span class="count"><?=$jm;?></span>
               </a>
               <div class="dropdown-menu dropdown-menu-right navbar-dropdown preview-list" aria-labelledby="notificationDropdown">
                 <a class="dropdown-item">
                   <p class="mb-0 font-weight-normal float-left"> Pemberitahuan Ujian </p>
                 </a>
-                <?php foreach ($ujian as $uj) { ?>
+                <?php foreach ($ujian as $uj) {?>
                   <div class="dropdown-divider"></div>
-                  <a class="dropdown-item preview-item" href="?page=ujian&act=status&id=<?=$uj['id_ujian'] ?>">
+                  <a class="dropdown-item preview-item" href="?page=ujian&act=status&id=<?=$uj['id_ujian']?>">
                     <div class="preview-thumbnail">
                       <div class="preview-icon bg-success">
                         <i class="fa fa-pencil"></i>
                       </div>
                     </div>
                     <div class="preview-item-content">
-                      <h6 class="preview-subject font-weight-medium"><?=$uj['mapel'] ?></h6>
-                      <p class="font-weight-light small-text"> <?=$uj['jenis_ujian'] ?> </p>
+                      <h6 class="preview-subject font-weight-medium"><?=$uj['mapel']?></h6>
+                      <p class="font-weight-light small-text"> <?=$uj['jenis_ujian']?> </p>
                     </div>
                   </a>
-                <?php } ?>
+                <?php }?>
               </div>
             </li>
             <li class="nav-item d-none d-lg-block">
               <a class="nav-link" href="index.php?page=setting&act=user">
                 <b>My Profile</b>
-                <img class="img-xs rounded-circle" src="../vendor/images/img_Guru/<?=$data['foto']; ?>" alt="">
+                <img class="img-xs rounded-circle" src="../vendor/images/img_Guru/logo1.jpg" alt="">
               </a>
             </li>
           </ul>
@@ -104,11 +104,11 @@ $apl = mysqli_fetch_array($sekolah);
             <li class="nav-item nav-profile">
               <div class="nav-link">
                 <div class="profile-image">
-                  <img src="../vendor/images/img_Guru/<?=$data['foto']; ?>" alt="image" style="border:3px solid black;"/>
+                  <img src="../vendor/images/img_Guru/logo1.jpg" alt="image" style="border:3px solid black;"/>
                   <span class="online-status online"></span>
                 </div>
                 <div class="profile-name">
-                  <p class="name"><?=$data['nama_lengkap']; ?></p>
+                  <p class="name"><?=$data['nama_lengkap'];?></p>
                   <p class="designation">Administrasion</p>
                   <div class="badge badge-teal mx-auto mt-3">Online</div>
                 </div>
@@ -210,88 +210,88 @@ $apl = mysqli_fetch_array($sekolah);
         </nav>
         <div class="main-panel">
           <?php
-          error_reporting();
-          $page = @$_GET['page'];
-          $act = @$_GET['act'];
+error_reporting();
+    $page = @$_GET['page'];
+    $act = @$_GET['act'];
 
-          if ($page=='kelas') {
-            if ($act=='') {
-              include 'modul/kelas/data_kelas.php';
-            } elseif ($act=='del') {
-              include 'modul/kelas/del_kelas.php';
-            }
-          } elseif ($page=='jurusan') {
-            if ($act=='') {
-              include 'modul/jurusan/data_jurusan.php';
-            } elseif ($act=='del') {
-              include 'modul/jurusan/del_jurusan.php';
-            }
-          } elseif ($page=='semester') {
-            if ($act=='') {
-              include 'modul/semester/data_semester.php';
-            } elseif ($act=='del') {
-              include 'modul/semester/del_semester.php';
-            }
-          } elseif ($page=='mapel') {{
-            if ($act=='') {
-              include 'modul/mapel/data_mapel.php';
-            } elseif ($act=='del') {
-              include 'modul/mapel/del_mapel.php';
-            }
-          } elseif ($page=='jenisujian') {
-            if ($act=='') {
-              include 'modul/jenisujian/data_jenisujian.php';
-            } elseif ($act=='del') {
-              include 'modul/jenisujian/del_jenisujian.php';
-            }
-          } elseif ($page=='jenisperangkat') {
-            if ($act=='') {
-              include 'modul/jenisperangkat/data_perangkat.php';
-            } elseif ($act=='del') {
-              include 'modul/jenisperangkat/del_perangkat.php';
-            }
-          } elseif ($page=='guru') {
-            if ($act=='') {
-              include 'modul/guru/data_guru.php';
-            } elseif ($act=='del') {
-              include 'modul/guru/del_guru.php';
-            } elseif ($act=='confirm') {
-              include 'modul/guru/confir_guru.php';
-            } elseif ($act=='unconfirm') {
-              include 'modul/guru/unconfir_guru.php';
-            } elseif ($act=='add') {
-              include 'modul/guru/add_guru.php';
-            } elseif ($act=='edit') {
-              include 'modul/guru/edit_guru.php';
-            }
-          } elseif ($page=='siswa') {
-            if ($act=='') {
-              include 'modul/siswa/data_siswa.php';
-            } elseif ($act=='del') {
-              include 'modul/siswa/del_siswa.php';
-            } elseif ($act=='confirm') {
-              include 'modul/siswa/confir_siswa.php';
-            } elseif ($act=='unconfirm') {
-              include 'modul/siswa/unconfir_siswa.php';
-            } elseif ($act=='add') {
-              include 'modul/siswa/add_siswa.php';
-            } elseif ($act=='edit') {
-              include 'modul/siswa/edit_siswa.php';
-            }
-          } elseif ($page=='setting') {
-            if ($act=='') {
-              include 'modul/setting/setting.php';
-            } elseif ($act=='user') {
-              include 'modul/setting/setting_user.php';
-            }
-          } elseif ($page=='proses') {
-            include 'modul/procces.php';
-          } elseif ($page=='') {
-            include 'Home.php';
-          } else {
-            echo "<b>4014!</b> Tidak ada halaman !";
-          }
-          ?>
+    if ($page == 'kelas') {
+        if ($act == '') {
+            include 'modul/kelas/data_kelas.php';
+        } elseif ($act == 'del') {
+            include 'modul/kelas/del_kelas.php';
+        }
+    } elseif ($page == 'jurusan') {
+        if ($act == '') {
+            include 'modul/jurusan/data_jurusan.php';
+        } elseif ($act == 'del') {
+            include 'modul/jurusan/del_jurusan.php';
+        }
+    } elseif ($page == 'semester') {
+        if ($act == '') {
+            include 'modul/semester/data_semester.php';
+        } elseif ($act == 'del') {
+            include 'modul/semester/del_semester.php';
+        }
+    } elseif ($page == 'mapel') {
+        if ($act == '') {
+            include 'modul/mapel/data_mapel.php';
+        } elseif ($act == 'del') {
+            include 'modul/mapel/del_mapel.php';
+        }
+    } elseif ($page == 'jenisujian') {
+        if ($act == '') {
+            include 'modul/jenisujian/data_jenisujian.php';
+        } elseif ($act == 'del') {
+            include 'modul/jenisujian/del_jenisujian.php';
+        }
+    } elseif ($page == 'jenisperangkat') {
+        if ($act == '') {
+            include 'modul/jenisperangkat/data_perangkat.php';
+        } elseif ($act == 'del') {
+            include 'modul/jenisperangkat/del_perangkat.php';
+        }
+    } elseif ($page == 'guru') {
+        if ($act == '') {
+            include 'modul/guru/data_guru.php';
+        } elseif ($act == 'del') {
+            include 'modul/guru/del_guru.php';
+        } elseif ($act == 'confirm') {
+            include 'modul/guru/confir_guru.php';
+        } elseif ($act == 'unconfirm') {
+            include 'modul/guru/unconfir_guru.php';
+        } elseif ($act == 'add') {
+            include 'modul/guru/add_guru.php';
+        } elseif ($act == 'edit') {
+            include 'modul/guru/edit_guru.php';
+        }
+    } elseif ($page == 'siswa') {
+        if ($act == '') {
+            include 'modul/siswa/data_siswa.php';
+        } elseif ($act == 'del') {
+            include 'modul/siswa/del_siswa.php';
+        } elseif ($act == 'confirm') {
+            include 'modul/siswa/confir_siswa.php';
+        } elseif ($act == 'unconfirm') {
+            include 'modul/siswa/unconfir_siswa.php';
+        } elseif ($act == 'add') {
+            include 'modul/siswa/add_siswa.php';
+        } elseif ($act == 'edit') {
+            include 'modul/siswa/edit_siswa.php';
+        }
+    } elseif ($page == 'setting') {
+        if ($act == '') {
+            include 'modul/setting/setting.php';
+        } elseif ($act == 'user') {
+            include 'modul/setting/setting_user.php';
+        }
+    } elseif ($page == 'proses') {
+        include 'modul/procces.php';
+    } elseif ($page == '') {
+        include 'Home.php';
+    } else {
+        echo "<b>4014!</b> Tidak ada halaman !";
+    }
+    ?>
 
           <footer class="footer">
             <div class="container-fluid clearfix">
@@ -331,7 +331,7 @@ $apl = mysqli_fetch_array($sekolah);
 </html>
 
 <?php
-}else {
-  include 'modul/500.html';
+} else {
+    include 'modul/500.html';
 }
 ?>
